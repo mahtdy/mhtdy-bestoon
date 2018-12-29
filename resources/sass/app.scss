@@ -1,0 +1,26 @@
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import '../Custom Css/fonts.css';
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Bootstrap Rtl
+@import '../Custom Css/bootstraprtl.css';
+
+// Custom Styles
+@import "../Custom Css/mystyles.css";
+
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+html , body {
+    font-family: Shabnam, 'sans-serif' , Tahoma;
+}
+[v-cloak] { display: none; }

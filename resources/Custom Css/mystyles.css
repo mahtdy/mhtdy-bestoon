@@ -1,0 +1,52 @@
+body {
+    background: white !important;
+}
+
+/** -- Header Styles --**/
+header.header {
+    max-width: 100%;
+    min-height: 400px;
+    background: #fbfbfb;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
+h1.header-title {
+    font-size: 36px;
+    font-weight: 500;
+    color: #29B6F6;
+}
+
+p.sub-header {
+    font-size: 16px;
+}
+.bottom-right-side {
+    float: right;
+}
+
+.bottom-left-side {
+    float: left;
+}
+
+.btn-getstarted {
+    display: block;
+    text-align: center;
+    max-width: 75%;
+    background: #E91E63;
+    color: white;
+    border: 1px solid #E91E63;
+    border-radius:50px;
+    padding: 12px;
+    margin-right: 46px;
+    transition: all .3s;
+    margin-top: 5em;
+}
+
+.btn-getstarted:hover {
+    color: #E91E63;
+    background: transparent;
+    text-decoration: none;
+}
