@@ -7,6 +7,7 @@ use App\Income;
 use foo\bar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -93,5 +94,60 @@ class HomeController extends Controller
         $res = array('incomes' => $incomes, 'expenses' => $expenses);
 
         return$res;
+    }
+
+    public function editIncome(Request $request)
+    {
+        $this->validate($request,[
+            'id' => 'required',
+            'title' => 'required',
+            'amount' => 'required'
+        ]);
+
+        $income = Income::find($request->id);
+        $income->title = $request->title;
+        $income->amount = $request->amount;
+        if ($income->save())
+        {
+            return back();
+        } else {
+            return response([], 403);
+        }
+
+    }
+
+    public function editExpense(Request $request)
+    {
+        $this->validate($request,[
+            'id' => 'required',
+            'title' => 'required',
+            'amount' => 'required'
+        ]);
+
+        $expense = Expense::find($request->id);
+        $expense->title = $request->title;
+        $expense->amount = $request->amount;
+        if ($expense->save())
+        {
+            return back();
+        } else {
+            return response([], 403);
+        }
+
+    }
+
+    public function deleteIncome(Request $request)
+    {
+        $income = Income::find($request->id);
+        $income->delete();
+
+        return back();
+    }
+
+    public function deleteExpense(Request $request)
+    {
+        $expense = Expense::find($request->id);
+        $expense->delete();
+        return back();
     }
 }

@@ -24,3 +24,7 @@ Route::post('/newExpense', 'HomeController@newExpense')->name('newExpense');
 
 Route::get('/iande','HomeController@Getiande');
 Route::get('/iandeList','HomeController@iandeList');
+Route::post('/editIncome','HomeController@editIncome');
+Route::post('/editExpense','HomeController@editExpense');
+Route::post('/deleteIncome', 'HomeController@deleteIncome');
+Route::post('/deleteExpense', 'HomeController@deleteExpense');

@@ -111,8 +111,12 @@
                                     </thead>
                                     <tbody>
                                     <tr v-for="(income, index) in incomes" :key="index">
-                                        <td>{{ index+1 }}</td>
-                                        <td>{{ income.title }}</td>
+                                        <td class="btn-link text-danger" @click="deleteIncome(income.id)"
+                                            style="cursor: pointer">{{ index+1 }}
+                                        </td>
+                                        <td class="btn-link" @click="editIncome(income.id)" style="cursor: pointer">{{
+                                            income.title }}
+                                        </td>
                                         <td>{{ income.amount }} تومان</td>
                                     </tr>
                                     </tbody>
@@ -130,8 +134,12 @@
                                     </thead>
                                     <tbody>
                                     <tr v-for="(expense, index) in expenses" :key="index">
-                                        <td>{{ index+1 }}</td>
-                                        <td>{{ expense.title }}</td>
+                                        <td class="btn-link text-danger" @click="deleteExpense(expense.id)"
+                                            style="cursor: pointer">{{ index+1 }}
+                                        </td>
+                                        <td class="btn-link" @click="editExpense(expense.id)" style="cursor: pointer">{{
+                                            expense.title }}
+                                        </td>
                                         <td>{{ expense.amount }} تومان</td>
                                     </tr>
                                     </tbody>
@@ -148,13 +156,17 @@
 </template>
 
 <script>
+    // Custom Functions
     function eArabic(x) {
         return x.toLocaleString('ar-EG');
     }
 
+    // Imports
     import basicChart from '../Charts/basicchart';
     import axios from 'axios';
+    import Swal from 'sweetalert2';
 
+    // Vue Codes
     export default {
         data() {
             return {
@@ -172,6 +184,7 @@
             }
         },
         methods: {
+            // Creating A Chart
             createChart(chartId, chartData) {
                 axios.get('/iande').then(async response => {
                     let incomes = response.data.totalIncomes;
@@ -193,6 +206,7 @@
                 });
             },
 
+            // Saving A New Income
             saveIncome() {
                 if (this.inctitle != '' && this.incamount != '') {
                     if (confirm('آیا اطمینان دارید ؟')) {
@@ -210,6 +224,7 @@
                 }
             },
 
+            // Saving A New Expense
             saveExpense() {
                 if (this.extitle != '' && this.examount != '') {
                     if (confirm('آیا اطمینان دارید ؟')) {
@@ -227,6 +242,7 @@
                 }
             },
 
+            // Getting Status Of This Month
             getStatusOfMonth() {
                 const self = this;
 
@@ -234,7 +250,7 @@
                     self.monthIncome = eArabic(data.data.totalIncomes);
                     self.monthExpense = eArabic(data.data.totalExpenses);
                     if (data.data.totalIncomes != 0 && data.data.totalExpenses != 0) {
-                        if (data.data.totalIncomes / 2 <= data.data.totalExpenses ) {
+                        if (data.data.totalIncomes / 2 <= data.data.totalExpenses) {
                             self.warning = true;
                         } else {
                             self.warning = false;
@@ -244,21 +260,191 @@
                 });
             },
 
+            // Setting Incomes And Expenses
             setIncomesAndExpenses() {
                 axios.get('/iandeList').then(res => {
                     this.incomes = res.data.incomes;
                     this.expenses = res.data.expenses;
 
                 });
+            },
+
+            // Edit Modals
+
+            editIncome(incomeID) {
+                Swal.mixin({
+                    input: 'text',
+                    confirmButtonText: 'بعدی &larr;',
+                    showCancelButton: true,
+                    progressSteps: ['1', '2']
+                }).queue([
+                    {
+                        title: 'عنوان جدید را بنویسید یا بر روی ادامه کلیک کنید'
+                    },
+                    'مبلغ جدید را بنویسید یا بر روی بعدی کلیک کنید'
+                ]).then((result) => {
+                    if (result.value) {
+                        if (result.value[0] != "" && result.value[1] != "") {
+                            // let income = this.incomes.find(x => x.id === incomeID);
+                            console.log('Requested');
+                            axios.post('/editIncome', {
+                                id: incomeID,
+                                title: result.value[0],
+                                amount: result.value[1]
+                            }).then(() => {
+                                this.createChart('basicChart', this.basicChart);
+                                this.getStatusOfMonth();
+                                this.setIncomesAndExpenses();
+                            }).catch(err => {
+                                console.log(err)
+                            });
+                        }
+                        Swal({
+                            title: 'تمام شد!',
+                            type: 'success',
+                            confirmButtonText: 'تشکر'
+                        })
+                    }
+                })
+            },
+
+            editExpense(expenseeID) {
+                Swal.mixin({
+                    input: 'text',
+                    confirmButtonText: 'بعدی &larr;',
+                    showCancelButton: true,
+                    progressSteps: ['1', '2']
+                }).queue([
+                    {
+                        title: 'عنوان جدید را بنویسید یا بر روی ادامه کلیک کنید'
+                    },
+                    'مبلغ جدید را بنویسید یا بر روی بعدی کلیک کنید'
+                ]).then((result) => {
+                    if (result.value) {
+                        if (result.value[0] != "" && result.value[1] != "") {
+                            // let income = this.incomes.find(x => x.id === incomeID);
+                            console.log('Requested');
+                            axios.post('/editExpense', {
+                                id: expenseeID,
+                                title: result.value[0],
+                                amount: result.value[1]
+                            }).then(() => {
+                                this.createChart('basicChart', this.basicChart);
+                                this.getStatusOfMonth();
+                                this.setIncomesAndExpenses();
+                            }).catch(err => {
+                                console.log(err)
+                            });
+                        }
+                        Swal({
+                            title: 'تمام شد!',
+                            type: 'success',
+                            confirmButtonText: 'تشکر'
+                        })
+                    }
+                })
+            },
+
+            // Delete Expense And Income
+            deleteIncome(incomeID) {
+                const self = this;
+                const swalWithBootstrapButtons = Swal.mixin({
+                    confirmButtonClass: 'btn btn-success mr-3',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false,
+                })
+
+                swalWithBootstrapButtons({
+                    title: 'آیا اطمینان دارید ؟',
+                    text: "اطمینان دارید که این مورد حذف شود ؟",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'بله حذفش کن',
+                    cancelButtonText: 'لغو',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.value) {
+
+                        axios.post('/deleteIncome', {
+                            id: incomeID
+                        }).then(() => {
+                            swalWithBootstrapButtons(
+                                'حذف شد !',
+                                'این مورد با موفقیت حذف شد.',
+                                'success'
+                            );
+                            self.createChart('basicChart', self.basicChart);
+                            self.getStatusOfMonth();
+                            self.setIncomesAndExpenses();
+                        });
+
+                    } else if (
+                        // Read more about handling dismissals
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons(
+                            'لغو شد!',
+                            'این مورد حذف نشد :)',
+                            'error'
+                        )
+                    }
+                })
+            },
+
+            deleteExpense(expenseID) {
+                const self = this;
+                const swalWithBootstrapButtons = Swal.mixin({
+                    confirmButtonClass: 'btn btn-success mr-3',
+                    cancelButtonClass: 'btn btn-danger',
+                    buttonsStyling: false,
+                })
+
+                swalWithBootstrapButtons({
+                    title: 'آیا اطمینان دارید ؟',
+                    text: "اطمینان دارید که این مورد حذف شود ؟",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'بله حذفش کن',
+                    cancelButtonText: 'لغو',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.value) {
+
+                        axios.post('/deleteExpense', {
+                            id: expenseID
+                        }).then(() => {
+                            swalWithBootstrapButtons(
+                                'حذف شد !',
+                                'این مورد با موفقیت حذف شد.',
+                                'success'
+                            );
+                            self.createChart('basicChart', self.basicChart);
+                            self.getStatusOfMonth();
+                            self.setIncomesAndExpenses();
+                        });
+
+                    } else if (
+                        // Read more about handling dismissals
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons(
+                            'لغو شد!',
+                            'این مورد حذف نشد :)',
+                            'error'
+                        )
+                    }
+                })
             }
 
         },
         mounted() {
 
+            // Loading Page
             setTimeout(() => {
                 this.isLoading = false;
             }, 2500);
 
+            // On Time Functions
             this.createChart('basicChart', this.basicChart);
             this.getStatusOfMonth();
 
