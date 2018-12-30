@@ -1,4 +1,5 @@
 import Vue from 'vue';
+
 window._ = require('lodash');
 
 /**
@@ -12,7 +13,8 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
-} catch (e) {}
+} catch (e) {
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -43,3 +45,5 @@ window.events = new Vue();
 window.flash = function (message) {
     window.events.$emit('flash', message);
 };
+
+
