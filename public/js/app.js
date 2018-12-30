@@ -1928,23 +1928,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 // Custom Functions
 function eArabic(x) {
   return x.toLocaleString('ar-EG');
@@ -20111,7 +20094,7 @@ for (var name in colorNames) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /* MIT license */
-var convert = __webpack_require__(/*! color-convert */ "./node_modules/chartjs-color/node_modules/color-convert/index.js");
+var convert = __webpack_require__(/*! color-convert */ "./node_modules/color-convert/index.js");
 var string = __webpack_require__(/*! chartjs-color-string */ "./node_modules/chartjs-color-string/color-string.js");
 
 var Color = function (obj) {
@@ -20599,10 +20582,10 @@ module.exports = Color;
 
 /***/ }),
 
-/***/ "./node_modules/chartjs-color/node_modules/color-convert/conversions.js":
-/*!******************************************************************************!*\
-  !*** ./node_modules/chartjs-color/node_modules/color-convert/conversions.js ***!
-  \******************************************************************************/
+/***/ "./node_modules/color-convert/conversions.js":
+/*!***************************************************!*\
+  !*** ./node_modules/color-convert/conversions.js ***!
+  \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -21308,14 +21291,14 @@ for (var key in cssKeywords) {
 
 /***/ }),
 
-/***/ "./node_modules/chartjs-color/node_modules/color-convert/index.js":
-/*!************************************************************************!*\
-  !*** ./node_modules/chartjs-color/node_modules/color-convert/index.js ***!
-  \************************************************************************/
+/***/ "./node_modules/color-convert/index.js":
+/*!*********************************************!*\
+  !*** ./node_modules/color-convert/index.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var conversions = __webpack_require__(/*! ./conversions */ "./node_modules/chartjs-color/node_modules/color-convert/conversions.js");
+var conversions = __webpack_require__(/*! ./conversions */ "./node_modules/color-convert/conversions.js");
 
 var convert = function() {
    return new Converter();
@@ -73696,9 +73679,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("tbody", [
                   _c("tr", [
-                    _c("td", [_vm._v(_vm._s(_vm.monthIncome) + " تومان")]),
+                    _c("td", [_vm._v(_vm._s(_vm.monthIncome) + " ریال")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.monthExpense) + " تومان")])
+                    _c("td", [_vm._v(_vm._s(_vm.monthExpense) + " ریال")])
                   ])
                 ])
               ]
@@ -73709,108 +73692,11 @@ var render = function() {
             _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6 mb-3" }, [
-                _c("div", { staticClass: "card shadow rounded" }, [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c(
-                      "form",
-                      {
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                          }
-                        }
-                      },
-                      [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.inctitle,
-                                expression: "inctitle"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              required: "",
-                              placeholder: "عنوان درآمد"
-                            },
-                            domProps: { value: _vm.inctitle },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.inctitle = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.incamount,
-                                expression: "incamount"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "number",
-                              required: "",
-                              placeholder: "مقدار درآمد به تومان"
-                            },
-                            domProps: { value: _vm.incamount },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.incamount = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success btn-block mb-2",
-                            attrs: { type: "submit" },
-                            on: { click: _vm.saveIncome }
-                          },
-                          [
-                            _vm._v(
-                              "ذخیره\n                                        "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-light btn-block",
-                            attrs: { type: "reset" }
-                          },
-                          [_vm._v("خالی کردن فرم")]
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ]),
+              _c("div", { staticClass: "col-md-6 mb-3" }),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
                 _c("div", { staticClass: "card shadow rounded" }, [
-                  _vm._m(3),
+                  _vm._m(2),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
                     _c(
@@ -73865,7 +73751,7 @@ var render = function() {
                             attrs: {
                               type: "number",
                               required: "",
-                              placeholder: "مقدار هزینه به تومان"
+                              placeholder: "مقدار هزینه به ریال"
                             },
                             domProps: { value: _vm.examount },
                             on: {
@@ -73913,7 +73799,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("table", { staticClass: "table table-bordered" }, [
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -73957,7 +73843,9 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(income.amount) + " تومان")])
+                        _c("td", [_vm._v(_vm._s(income.amount) + " ریال")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(income.created_at))])
                       ])
                     }),
                     0
@@ -73971,7 +73859,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("table", { staticClass: "table table-bordered" }, [
-                  _vm._m(5),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -74015,7 +73903,9 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(expense.amount) + " تومان")])
+                        _c("td", [_vm._v(_vm._s(expense.amount) + " ریال")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(expense.created_at))])
                       ])
                     }),
                     0
@@ -74057,14 +73947,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header " }, [
-      _c("h3", { staticClass: "text-center" }, [_vm._v("ثبت درآمد جدید")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
       _c("h3", { staticClass: "text-center" }, [_vm._v("ثبت هزینه جدید")])
     ])
@@ -74079,7 +73961,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("عنوان درآمد")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("مبلغ")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("مبلغ")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("تاریخ ثبت")])
       ])
     ])
   },
@@ -74093,7 +73977,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("عنوان هزینه")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("مبلغ")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("مبلغ")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("تاریخ ثبت")])
       ])
     ])
   }
