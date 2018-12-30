@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <!--  Container -->
     <div class="container">
         <div class="row justify-content-center">
@@ -29,8 +29,8 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td>{{ monthIncome }} تومان</td>
-                                <td>{{ monthExpense }} تومان</td>
+                                <td>{{ monthIncome }} ریال</td>
+                                <td>{{ monthExpense }} ریال</td>
                             </tr>
                             </tbody>
                         </table>
@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <input type="number" class="form-control" required
-                                                       placeholder="مقدار درآمد به تومان"
+                                                       placeholder="مقدار درآمد به ریال"
                                                        v-model="incamount">
                                             </div>
                                             <button type="submit" class="btn btn-success btn-block mb-2"
@@ -87,7 +87,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <input type="number" class="form-control" required
-                                                       placeholder="مقدار هزینه به تومان"
+                                                       placeholder="مقدار هزینه به ریال"
                                                        v-model="examount">
                                             </div>
                                             <button @click="saveExpense" type="submit"
@@ -107,6 +107,7 @@
                                         <th scope="row">#</th>
                                         <th scope="col">عنوان درآمد</th>
                                         <th scope="col">مبلغ</th>
+                                        <th scope="col">تاریخ ثبت</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -117,7 +118,8 @@
                                         <td class="btn-link" @click="editIncome(income.id)" style="cursor: pointer">{{
                                             income.title }}
                                         </td>
-                                        <td>{{ income.amount }} تومان</td>
+                                        <td>{{ income.amount }} ریال</td>
+                                        <td>{{ income.created_at }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -130,6 +132,7 @@
                                         <th scope="row">#</th>
                                         <th scope="col">عنوان هزینه</th>
                                         <th scope="col">مبلغ</th>
+                                        <th scope="col">تاریخ ثبت</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -140,7 +143,8 @@
                                         <td class="btn-link" @click="editExpense(expense.id)" style="cursor: pointer">{{
                                             expense.title }}
                                         </td>
-                                        <td>{{ expense.amount }} تومان</td>
+                                        <td>{{ expense.amount }} ریال</td>
+                                        <td>{{ expense.created_at }}</td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24d17427-a3fc-4064-9d32-fbd78d9e211f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Bold.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Bold.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Bold.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Bold.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Bold.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Bold.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Light.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Light.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Light.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Light.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Light.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam-Light.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam.eot" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam.eot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam.woff" beforeDir="false" afterPath="$PROJECT_DIR$/public/fonts/vendor/shabnam-dist/Shabnam.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
-    </list>
+    <list default="true" id="24d17427-a3fc-4064-9d32-fbd78d9e211f" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +31,7 @@
         <entry file="file://$PROJECT_DIR$/resources/js/components/DashboardComponent.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="518">
-              <caret line="280" column="26" lean-forward="true" selection-start-line="280" selection-start-column="26" selection-end-line="280" selection-end-column="26" />
+              <caret line="280" column="26" selection-start-line="280" selection-start-column="26" selection-end-line="280" selection-end-column="26" />
               <folding>
                 <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#2;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#2;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -262,12 +249,12 @@
       <workItem from="1545972980810" duration="11649000" />
       <workItem from="1545992807714" duration="11889000" />
       <workItem from="1546054816134" duration="13630000" />
-      <workItem from="1546150635980" duration="7016000" />
+      <workItem from="1546150635980" duration="7182000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44184000" />
+    <option name="totallyTimeSpent" value="44350000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -280,9 +267,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21108742" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21108742" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -600,7 +586,7 @@
     <entry file="file://$PROJECT_DIR$/resources/js/components/DashboardComponent.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="518">
-          <caret line="280" column="26" lean-forward="true" selection-start-line="280" selection-start-column="26" selection-end-line="280" selection-end-column="26" />
+          <caret line="280" column="26" selection-start-line="280" selection-start-column="26" selection-end-line="280" selection-end-column="26" />
           <folding>
             <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#2;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#div#2;n#div#2;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />

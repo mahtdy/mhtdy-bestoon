@@ -1945,6 +1945,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 // Custom Functions
 function eArabic(x) {
   return x.toLocaleString('ar-EG');
@@ -73696,9 +73700,9 @@ var render = function() {
                 _vm._v(" "),
                 _c("tbody", [
                   _c("tr", [
-                    _c("td", [_vm._v(_vm._s(_vm.monthIncome) + " تومان")]),
+                    _c("td", [_vm._v(_vm._s(_vm.monthIncome) + " ریال")]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.monthExpense) + " تومان")])
+                    _c("td", [_vm._v(_vm._s(_vm.monthExpense) + " ریال")])
                   ])
                 ])
               ]
@@ -73766,7 +73770,7 @@ var render = function() {
                             attrs: {
                               type: "number",
                               required: "",
-                              placeholder: "مقدار درآمد به تومان"
+                              placeholder: "مقدار درآمد به ریال"
                             },
                             domProps: { value: _vm.incamount },
                             on: {
@@ -73865,7 +73869,7 @@ var render = function() {
                             attrs: {
                               type: "number",
                               required: "",
-                              placeholder: "مقدار هزینه به تومان"
+                              placeholder: "مقدار هزینه به ریال"
                             },
                             domProps: { value: _vm.examount },
                             on: {
@@ -73957,7 +73961,9 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(income.amount) + " تومان")])
+                        _c("td", [_vm._v(_vm._s(income.amount) + " ریال")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(income.created_at))])
                       ])
                     }),
                     0
@@ -74015,7 +74021,9 @@ var render = function() {
                           ]
                         ),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(expense.amount) + " تومان")])
+                        _c("td", [_vm._v(_vm._s(expense.amount) + " ریال")]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(expense.created_at))])
                       ])
                     }),
                     0
@@ -74079,7 +74087,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("عنوان درآمد")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("مبلغ")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("مبلغ")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("تاریخ ثبت")])
       ])
     ])
   },
@@ -74093,7 +74103,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("عنوان هزینه")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("مبلغ")])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("مبلغ")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("تاریخ ثبت")])
       ])
     ])
   }
