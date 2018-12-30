@@ -272,6 +272,7 @@
             // Edit Modals
 
             editIncome(incomeID) {
+                let income = this.incomes.find(x => x.id === incomeID);
                 Swal.mixin({
                     input: 'text',
                     confirmButtonText: 'بعدی &larr;',
@@ -279,13 +280,18 @@
                     progressSteps: ['1', '2']
                 }).queue([
                     {
-                        title: 'عنوان جدید را بنویسید یا بر روی ادامه کلیک کنید'
+                        title: "مرحله 1",
+                        text: 'عنوان جدید را بنویسید یا بر روی ادامه کلیک کنید',
+                        inputValue: income.title,
                     },
-                    'مبلغ جدید را بنویسید یا بر روی بعدی کلیک کنید'
+                    {
+                        title: "مرحله 2",
+                        text: 'مبلغ جدید را بنویسید یا بر روی بعدی کلیک کنید',
+                        inputValue: income.amount,
+                    }
                 ]).then((result) => {
                     if (result.value) {
                         if (result.value[0] != "" && result.value[1] != "") {
-                            // let income = this.incomes.find(x => x.id === incomeID);
                             console.log('Requested');
                             axios.post('/editIncome', {
                                 id: incomeID,
@@ -308,7 +314,8 @@
                 })
             },
 
-            editExpense(expenseeID) {
+            editExpense(expenseID) {
+                let expense = this.expenses.find(x => x.id === expenseID);
                 Swal.mixin({
                     input: 'text',
                     confirmButtonText: 'بعدی &larr;',
@@ -316,16 +323,21 @@
                     progressSteps: ['1', '2']
                 }).queue([
                     {
-                        title: 'عنوان جدید را بنویسید یا بر روی ادامه کلیک کنید'
+                        title: "مرحله 1",
+                        text: 'عنوان جدید را بنویسید یا بر روی ادامه کلیک کنید',
+                        inputValue: expense.title
                     },
-                    'مبلغ جدید را بنویسید یا بر روی بعدی کلیک کنید'
+                    {
+                        title: "مرحله 2",
+                        text: 'مبلغ جدید را بنویسید یا بر روی بعدی کلیک کنید',
+                        inputValue: expense.amount
+                    }
                 ]).then((result) => {
                     if (result.value) {
                         if (result.value[0] != "" && result.value[1] != "") {
-                            // let income = this.incomes.find(x => x.id === incomeID);
                             console.log('Requested');
                             axios.post('/editExpense', {
-                                id: expenseeID,
+                                id: expenseID,
                                 title: result.value[0],
                                 amount: result.value[1]
                             }).then(() => {

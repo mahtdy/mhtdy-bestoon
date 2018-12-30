@@ -2077,17 +2077,25 @@ function eArabic(x) {
     editIncome: function editIncome(incomeID) {
       var _this2 = this;
 
+      var income = this.incomes.find(function (x) {
+        return x.id === incomeID;
+      });
       sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
         input: 'text',
         confirmButtonText: 'بعدی &larr;',
         showCancelButton: true,
         progressSteps: ['1', '2']
       }).queue([{
-        title: 'عنوان جدید را بنویسید یا بر روی ادامه کلیک کنید'
-      }, 'مبلغ جدید را بنویسید یا بر روی بعدی کلیک کنید']).then(function (result) {
+        title: "مرحله 1",
+        text: 'عنوان جدید را بنویسید یا بر روی ادامه کلیک کنید',
+        inputValue: income.title
+      }, {
+        title: "مرحله 2",
+        text: 'مبلغ جدید را بنویسید یا بر روی بعدی کلیک کنید',
+        inputValue: income.amount
+      }]).then(function (result) {
         if (result.value) {
           if (result.value[0] != "" && result.value[1] != "") {
-            // let income = this.incomes.find(x => x.id === incomeID);
             console.log('Requested');
             axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/editIncome', {
               id: incomeID,
@@ -2112,23 +2120,31 @@ function eArabic(x) {
         }
       });
     },
-    editExpense: function editExpense(expenseeID) {
+    editExpense: function editExpense(expenseID) {
       var _this3 = this;
 
+      var expense = this.expenses.find(function (x) {
+        return x.id === expenseID;
+      });
       sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.mixin({
         input: 'text',
         confirmButtonText: 'بعدی &larr;',
         showCancelButton: true,
         progressSteps: ['1', '2']
       }).queue([{
-        title: 'عنوان جدید را بنویسید یا بر روی ادامه کلیک کنید'
-      }, 'مبلغ جدید را بنویسید یا بر روی بعدی کلیک کنید']).then(function (result) {
+        title: "مرحله 1",
+        text: 'عنوان جدید را بنویسید یا بر روی ادامه کلیک کنید',
+        inputValue: expense.title
+      }, {
+        title: "مرحله 2",
+        text: 'مبلغ جدید را بنویسید یا بر روی بعدی کلیک کنید',
+        inputValue: expense.amount
+      }]).then(function (result) {
         if (result.value) {
           if (result.value[0] != "" && result.value[1] != "") {
-            // let income = this.incomes.find(x => x.id === incomeID);
             console.log('Requested');
             axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/editExpense', {
-              id: expenseeID,
+              id: expenseID,
               title: result.value[0],
               amount: result.value[1]
             }).then(function () {
