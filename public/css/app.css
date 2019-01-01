@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@font-face {
+@import url(https://fonts.googleapis.com/css?family=Raleway);@import url(https://fonts.googleapis.com/css?family=Nunito);@font-face {
     font-family: Shabnam;
     src: url(/fonts/vendor/shabnam-dist/Shabnam.eot?0239faa05713cdd12ddee309299ae257);
     src: url(/fonts/vendor/shabnam-dist/Shabnam.eot?0239faa05713cdd12ddee309299ae257?#iefix) format('embedded-opentype'),
@@ -11100,7 +11100,7 @@ a.text-dark:focus {
 
 html,
 body {
-  font-family: Shabnam, "sans-serif", Tahoma;
+  font-family: Shabnam, "Raleway", "sans-serif", Tahoma;
 }
 
 [v-cloak] {

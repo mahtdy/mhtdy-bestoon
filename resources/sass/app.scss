@@ -1,5 +1,6 @@
 
 // Fonts
+@import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import '../Custom Css/fonts.css';
 
@@ -21,6 +22,7 @@
 }
 
 html , body {
-    font-family: Shabnam, 'sans-serif' , Tahoma;
+    font-family: Shabnam, 'Raleway' , 'sans-serif' , Tahoma;
 }
+
 [v-cloak] { display: none; }
