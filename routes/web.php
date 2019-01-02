@@ -33,3 +33,6 @@ Route::get('/plan', 'HomeController@plan');
 Route::post('/buyPlan', 'HomeController@buyPlan')->name('buyPlan');
 
 Route::any('/verifyPay', 'HomeController@verifyPay')->name('verifyPay');
+
+Route::get('/subscribe', 'SubscribeController@index');
+Route::post('/subscribe', 'SubscribeController@store')->name('subscribe');
