@@ -28,3 +28,8 @@ Route::post('/editIncome','HomeController@editIncome');
 Route::post('/editExpense','HomeController@editExpense');
 Route::post('/deleteIncome', 'HomeController@deleteIncome');
 Route::post('/deleteExpense', 'HomeController@deleteExpense');
+
+Route::get('/plan', 'HomeController@plan');
+Route::post('/buyPlan', 'HomeController@buyPlan')->name('buyPlan');
+
+Route::any('/verifyPay', 'HomeController@verifyPay')->name('verifyPay');

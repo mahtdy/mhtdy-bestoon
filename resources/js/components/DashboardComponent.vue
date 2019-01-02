@@ -119,7 +119,9 @@
                                             income.title }}
                                         </td>
                                         <td>{{ income.amount }} ریال</td>
-                                        <td>{{ income.created_at }}</td>
+                                        <td>
+                                            {{ income.created_diff }}
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -144,7 +146,7 @@
                                             expense.title }}
                                         </td>
                                         <td>{{ expense.amount }} ریال</td>
-                                        <td>{{ expense.created_at }}</td>
+                                        <td>{{ expense.created_diff }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -169,6 +171,7 @@
     import basicChart from '../Charts/basicchart';
     import axios from 'axios';
     import Swal from 'sweetalert2';
+    import moment from 'moment';
 
     // Vue Codes
     export default {
@@ -184,7 +187,7 @@
                 warning: false,
                 isLoading: true,
                 incomes: [],
-                expenses: []
+                expenses: [],
             }
         },
         methods: {
@@ -296,12 +299,12 @@
                 ]).then((result) => {
                     if (result.value) {
                         if (result.value[0] != "" && result.value[1] != "") {
-                            console.log('Requested');
                             axios.post('/editIncome', {
                                 id: incomeID,
                                 title: result.value[0],
                                 amount: result.value[1]
                             }).then(() => {
+                                console.log('Requested');
                                 this.createChart('basicChart', this.basicChart);
                                 this.getStatusOfMonth();
                                 this.setIncomesAndExpenses();
@@ -463,7 +466,6 @@
             // On Time Functions
             this.createChart('basicChart', this.basicChart);
             this.getStatusOfMonth();
-
             this.setIncomesAndExpenses();
         }
     }

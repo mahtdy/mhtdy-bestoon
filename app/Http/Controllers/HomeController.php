@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Expense;
 use App\Income;
-use foo\bar;
+use App\Transaction;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Middleware\CheckUserActivation;
 
 class HomeController extends Controller
 {
@@ -19,6 +21,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware(CheckUserActivation::class)->except(['plan', 'buyPlan', 'verifyPay', 'verify']);
     }
 
     /**
@@ -82,23 +85,31 @@ class HomeController extends Controller
             ]
         )->get();
 
-        $final = array('totalIncomes' => $incomes->sum('amount') , 'totalExpenses' => $expenses->sum('amount'));
+        $final = array('totalIncomes' => $incomes->sum('amount'), 'totalExpenses' => $expenses->sum('amount'));
         return $final;
     }
 
     public function iandeList()
     {
+        Carbon::setLocale('fa');
         $incomes = Income::latest()->where('user_id', Auth::id())->take(10)->get();
+        $incomes = $incomes->map(function ($incomes) {
+            $incomes->created_diff = $incomes->created_at->diffForHumans();
+            return $incomes;
+        });
         $expenses = Expense::latest()->where('user_id', Auth::id())->take(10)->get();
-
+        $expenses = $expenses->map(function ($expenses) {
+            $expenses->created_diff = $expenses->created_at->diffForHumans();
+            return $expenses;
+        });
         $res = array('incomes' => $incomes, 'expenses' => $expenses);
 
-        return$res;
+        return $res;
     }
 
     public function editIncome(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'id' => 'required',
             'title' => 'required',
             'amount' => 'required'
@@ -107,8 +118,7 @@ class HomeController extends Controller
         $income = Income::find($request->id);
         $income->title = $request->title;
         $income->amount = $request->amount;
-        if ($income->save())
-        {
+        if ($income->save()) {
             return back();
         } else {
             return response([], 403);
@@ -118,7 +128,7 @@ class HomeController extends Controller
 
     public function editExpense(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'id' => 'required',
             'title' => 'required',
             'amount' => 'required'
@@ -127,8 +137,7 @@ class HomeController extends Controller
         $expense = Expense::find($request->id);
         $expense->title = $request->title;
         $expense->amount = $request->amount;
-        if ($expense->save())
-        {
+        if ($expense->save()) {
             return back();
         } else {
             return response([], 403);
@@ -149,5 +158,129 @@ class HomeController extends Controller
         $expense = Expense::find($request->id);
         $expense->delete();
         return back();
+    }
+
+    public function plan()
+    {
+        return view('plan.index');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function buyPlan(Request $request)
+    {
+        $this->validate($request, [
+            'type' => 'required'
+        ]);
+        $amount = null;
+        $price1 = 20000;
+        $price2 = 100000;
+        $price3 = 200000;
+        if ($request->type == 1) {
+            $amount = $price1;
+        } elseif ($request->type == 2) {
+            $amount = $price2;
+        } elseif ($request->type == 3) {
+            $amount = $price3;
+        } else {
+            return back();
+        }
+        $api = 'test';
+        $factorNumber = str_random(15);
+        $description = "فعالسازی حساب کاربری";
+        $redirect = 'http://localhost:8000/verifyPay';
+        $result = $this->sendPay($api, $amount, $redirect, null, $factorNumber, $description);
+        $result = json_decode($result);
+        if ($result->status) {
+            $go = "https://pay.ir/pg/$result->token";
+            return redirect($go);
+        } else {
+            return $result->errorMessage;
+        }
+
+    }
+
+    public function verifyPay(Request $request)
+    {
+        $api = 'test';
+        $token = $request->token;
+        $result = json_decode($this->verify($api, $token));
+        if (isset($result->status)) {
+            $trans = new Transaction();
+            $trans->user_id = Auth::id();
+            $trans->factorNumber = $result->factorNumber;
+            $trans->transId = $result->transId;
+            $trans->cardNumber = $result->cardNumber;
+            $trans->amount = $result->amount;
+            $trans->status = $result->status;
+            $trans->save();
+            if ($result->status == 1) {
+                $res = $result;
+                $user = User::find(Auth::id());
+                $user->is_activate = true;
+                $user->save();
+                return view('plan.success', compact('res'));
+            } else {
+                return 'no 1';
+            }
+        } else {
+            if ($request->status == 0) {
+                return 'no 2';
+            }
+        }
+    }
+
+    /**
+     * @param $api
+     * @param $amount
+     * @param $redirect
+     * @param null $mobile
+     * @param null $factorNumber
+     * @param null $description
+     * @return mixed
+     */
+    private function sendPay($api, $amount, $redirect, $mobile = null, $factorNumber = null, $description = null)
+    {
+        return $this->curl_post('https://pay.ir/pg/send', [
+            'api' => $api,
+            'amount' => $amount,
+            'redirect' => $redirect,
+            'mobile' => $mobile,
+            'factorNumber' => $factorNumber,
+            'description' => $description,
+        ]);
+    }
+
+    private function verify($api, $token)
+    {
+        return $this->curl_post('https://pay.ir/pg/verify', [
+            'api' => $api,
+            'token' => $token,
+        ]);
+    }
+
+    /**
+     * @param $url
+     * @param $params
+     * @return bool|string
+     */
+    private function curl_post($url, $params)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+        ]);
+        $res = curl_exec($ch);
+        curl_close($ch);
+
+        return $res;
     }
 }

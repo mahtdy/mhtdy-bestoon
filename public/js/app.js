@@ -1782,12 +1782,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_4__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
 //
 //
 //
@@ -1957,6 +1961,7 @@ function eArabic(x) {
 
 
 
+
  // Vue Codes
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2100,12 +2105,13 @@ function eArabic(x) {
       }]).then(function (result) {
         if (result.value) {
           if (result.value[0] != "" && result.value[1] != "") {
-            console.log('Requested');
             axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/editIncome', {
               id: incomeID,
               title: result.value[0],
               amount: result.value[1]
             }).then(function () {
+              console.log('Requested');
+
               _this2.createChart('basicChart', _this2.basicChart);
 
               _this2.getStatusOfMonth();
@@ -73963,7 +73969,13 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(income.amount) + " ریال")]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(income.created_at))])
+                        _c("td", [
+                          _vm._v(
+                            "\n                                        " +
+                              _vm._s(income.created_diff) +
+                              "\n                                    "
+                          )
+                        ])
                       ])
                     }),
                     0
@@ -74023,7 +74035,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(expense.amount) + " ریال")]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(expense.created_at))])
+                        _c("td", [_vm._v(_vm._s(expense.created_diff))])
                       ])
                     }),
                     0
@@ -85480,9 +85492,11 @@ Vue.component('flash', __webpack_require__(/*! ./components/Flash.vue */ "./reso
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var app = new Vue({
-  el: '#app'
-});
+window.onload = function () {
+  var app = new Vue({
+    el: '#app'
+  });
+};
 
 /***/ }),
 
