@@ -162,10 +162,6 @@
 </template>
 
 <script>
-    // Custom Functions
-    function eArabic(x) {
-        return x.toLocaleString('ar-EG');
-    }
 
     // Imports
     import basicChart from '../Charts/basicchart';
@@ -212,7 +208,6 @@
                     Chart.defaults.global.defaultFontFamily = "'Shabnam'";
                 });
             },
-
             // Saving A New Income
             saveIncome() {
                 if (this.inctitle != '' && this.incamount != '') {
@@ -254,8 +249,8 @@
                 const self = this;
 
                 axios.get('/iande').then(data => {
-                    self.monthIncome = eArabic(data.data.totalIncomes);
-                    self.monthExpense = eArabic(data.data.totalExpenses);
+                    self.monthIncome = data.data.totalIncomes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    self.monthExpense = data.data.totalExpenses.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     if (data.data.totalIncomes != 0 && data.data.totalExpenses != 0) {
                         if (data.data.totalIncomes / 2 <= data.data.totalExpenses) {
                             self.warning = true;

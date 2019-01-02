@@ -1953,12 +1953,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-// Custom Functions
-function eArabic(x) {
-  return x.toLocaleString('ar-EG');
-} // Imports
-
-
+// Imports
 
 
 
@@ -2061,8 +2056,8 @@ function eArabic(x) {
     getStatusOfMonth: function getStatusOfMonth() {
       var self = this;
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/iande').then(function (data) {
-        self.monthIncome = eArabic(data.data.totalIncomes);
-        self.monthExpense = eArabic(data.data.totalExpenses);
+        self.monthIncome = data.data.totalIncomes.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        self.monthExpense = data.data.totalExpenses.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
         if (data.data.totalIncomes != 0 && data.data.totalExpenses != 0) {
           if (data.data.totalIncomes / 2 <= data.data.totalExpenses) {
@@ -85440,6 +85435,17 @@ __webpack_require__.r(__webpack_exports__);
 var basicChart = {
   type: 'pie',
   options: {
+    tooltips: {
+      enabled: true,
+      mode: 'single',
+      callbacks: {
+        label: function label(tooltipItem, data) {
+          var label = data.labels[tooltipItem.index];
+          var datasetLabel = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+          return label + ': ' + datasetLabel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " ریال";
+        }
+      }
+    },
     title: {
       display: true,
       text: 'گزارش میزان هزینه ها و درآمد های شما در 30 روز گذشته'
