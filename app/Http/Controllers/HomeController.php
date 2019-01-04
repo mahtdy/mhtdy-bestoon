@@ -35,7 +35,7 @@ class HomeController extends Controller
         $user = User::where('id', '=', auth()->id())->first();
         $userExpiry = $user->hasExpiry();
         $userExpiryType = $userExpiry->type;
-        return view('home', compact('userExpiry','userExpiryType'));
+        return view('home', compact('userExpiry', 'userExpiryType'));
     }
 
     public function newIncome(Request $request)

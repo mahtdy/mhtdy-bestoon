@@ -1946,13 +1946,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 // Imports
 
 
@@ -73667,377 +73660,348 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("div", { staticClass: "card text-right" }, [
-          _c("div", { staticClass: "card-header" }, [_vm._v("داشبورد")]),
+  return _c("div", { staticClass: "card text-right" }, [
+    _c("div", { staticClass: "card-header" }, [_vm._v("داشبورد")]),
+    _vm._v(" "),
+    _vm.isLoading
+      ? _c("div", { staticClass: "isloading" }, [
+          _c("h2", { staticClass: "text-center h2 text-primary" }, [
+            _vm._v("درحال پردازش اطلاعات ...")
+          ])
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _vm.warning
+        ? _c("div", { staticClass: "alert alert-warning shadow-sm" }, [
+            _c("strong", [_vm._v(" مواظب باش! ")]),
+            _vm._v(" "),
+            _c("small", [_vm._v("پس انداز این ماه در خطره.")])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "table",
+        { staticClass: "table table-bordered table-info text-center shadow" },
+        [
+          _vm._m(0),
           _vm._v(" "),
-          _vm.isLoading
-            ? _c("div", { staticClass: "isloading" }, [
-                _c("h2", { staticClass: "text-center h2 text-primary" }, [
-                  _vm._v("درحال پردازش اطلاعات ...")
-                ])
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _vm.warning
-              ? _c("div", { staticClass: "alert alert-warning shadow-sm" }, [
-                  _c("strong", [_vm._v(" مواظب باش! ")]),
+          _c("tbody", [
+            _c("tr", [
+              _c("td", [_vm._v(_vm._s(_vm.monthIncome) + " ریال")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.monthExpense) + " ریال")])
+            ])
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _vm._m(1),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6 mb-3" }, [
+          _c("div", { staticClass: "card shadow rounded" }, [
+            _vm._m(2),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.inctitle,
+                          expression: "inctitle"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "عنوان درآمد"
+                      },
+                      domProps: { value: _vm.inctitle },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.inctitle = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
                   _vm._v(" "),
-                  _c("small", [_vm._v("پس انداز این ماه در خطره.")])
-                ])
-              : _vm._e(),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.incamount,
+                          expression: "incamount"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "number",
+                        required: "",
+                        placeholder: "مقدار درآمد به ریال"
+                      },
+                      domProps: { value: _vm.incamount },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.incamount = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success btn-block mb-2",
+                      attrs: { type: "submit" },
+                      on: { click: _vm.saveIncome }
+                    },
+                    [_vm._v("ذخیره\n                            ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light btn-block",
+                      attrs: { type: "reset" }
+                    },
+                    [_vm._v("خالی کردن فرم")]
+                  )
+                ]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("div", { staticClass: "card shadow rounded" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c(
+                "form",
+                {
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.extitle,
+                          expression: "extitle"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        required: "",
+                        placeholder: "عنوان هزینه"
+                      },
+                      domProps: { value: _vm.extitle },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.extitle = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.examount,
+                          expression: "examount"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "number",
+                        required: "",
+                        placeholder: "مقدار هزینه به ریال"
+                      },
+                      domProps: { value: _vm.examount },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.examount = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary btn-block mb-2",
+                      attrs: { type: "submit" },
+                      on: { click: _vm.saveExpense }
+                    },
+                    [_vm._v("ذخیره\n                            ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-light btn-block",
+                      attrs: { type: "reset" }
+                    },
+                    [_vm._v("خالی کردن فرم")]
+                  )
+                ]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("h4", { staticClass: "text-center h4 mt-3 mb-3" }, [
+            _vm._v("لیست آخرین درآمد ها")
+          ]),
+          _vm._v(" "),
+          _c("table", { staticClass: "table table-bordered" }, [
+            _vm._m(4),
             _vm._v(" "),
             _c(
-              "table",
-              {
-                staticClass:
-                  "table table-bordered table-info text-center shadow"
-              },
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("tbody", [
-                  _c("tr", [
-                    _c("td", [_vm._v(_vm._s(_vm.monthIncome) + " ریال")]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(_vm.monthExpense) + " ریال")])
-                  ])
-                ])
-              ]
-            ),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6 mb-3" }, [
-                _c("div", { staticClass: "card shadow rounded" }, [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c(
-                      "form",
-                      {
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                          }
+              "tbody",
+              _vm._l(_vm.incomes, function(income, index) {
+                return _c("tr", { key: index }, [
+                  _c(
+                    "td",
+                    {
+                      staticClass: "btn-link text-danger",
+                      staticStyle: { cursor: "pointer" },
+                      on: {
+                        click: function($event) {
+                          _vm.deleteIncome(income.id)
                         }
-                      },
-                      [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.inctitle,
-                                expression: "inctitle"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              required: "",
-                              placeholder: "عنوان درآمد"
-                            },
-                            domProps: { value: _vm.inctitle },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.inctitle = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.incamount,
-                                expression: "incamount"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "number",
-                              required: "",
-                              placeholder: "مقدار درآمد به ریال"
-                            },
-                            domProps: { value: _vm.incamount },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.incamount = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-success btn-block mb-2",
-                            attrs: { type: "submit" },
-                            on: { click: _vm.saveIncome }
-                          },
-                          [
-                            _vm._v(
-                              "ذخیره\n                                        "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-light btn-block",
-                            attrs: { type: "reset" }
-                          },
-                          [_vm._v("خالی کردن فرم")]
-                        )
-                      ]
+                      }
+                    },
+                    [_vm._v(_vm._s(index + 1) + "\n                        ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    {
+                      staticClass: "btn-link",
+                      staticStyle: { cursor: "pointer" },
+                      on: {
+                        click: function($event) {
+                          _vm.editIncome(income.id)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(income.title) + "\n                        "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(income.amount) + " ریال")]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(income.created_diff) +
+                        "\n                        "
                     )
                   ])
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("div", { staticClass: "card shadow rounded" }, [
-                  _vm._m(3),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-body" }, [
-                    _c(
-                      "form",
-                      {
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                          }
+              }),
+              0
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("h4", { staticClass: "text-center h4 mt-3 mb-3" }, [
+            _vm._v("لیست آخرین هزینه ها")
+          ]),
+          _vm._v(" "),
+          _c("table", { staticClass: "table table-bordered" }, [
+            _vm._m(5),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.expenses, function(expense, index) {
+                return _c("tr", { key: index }, [
+                  _c(
+                    "td",
+                    {
+                      staticClass: "btn-link text-danger",
+                      staticStyle: { cursor: "pointer" },
+                      on: {
+                        click: function($event) {
+                          _vm.deleteExpense(expense.id)
                         }
-                      },
-                      [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.extitle,
-                                expression: "extitle"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              required: "",
-                              placeholder: "عنوان هزینه"
-                            },
-                            domProps: { value: _vm.extitle },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.extitle = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.examount,
-                                expression: "examount"
-                              }
-                            ],
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "number",
-                              required: "",
-                              placeholder: "مقدار هزینه به ریال"
-                            },
-                            domProps: { value: _vm.examount },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
-                                }
-                                _vm.examount = $event.target.value
-                              }
-                            }
-                          })
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-primary btn-block mb-2",
-                            attrs: { type: "submit" },
-                            on: { click: _vm.saveExpense }
-                          },
-                          [
-                            _vm._v(
-                              "ذخیره\n                                        "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-light btn-block",
-                            attrs: { type: "reset" }
-                          },
-                          [_vm._v("خالی کردن فرم")]
-                        )
-                      ]
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("h4", { staticClass: "text-center h4 mt-3 mb-3" }, [
-                  _vm._v("لیست آخرین درآمد ها")
-                ]),
-                _vm._v(" "),
-                _c("table", { staticClass: "table table-bordered" }, [
-                  _vm._m(4),
+                      }
+                    },
+                    [_vm._v(_vm._s(index + 1) + "\n                        ")]
+                  ),
                   _vm._v(" "),
                   _c(
-                    "tbody",
-                    _vm._l(_vm.incomes, function(income, index) {
-                      return _c("tr", { key: index }, [
-                        _c(
-                          "td",
-                          {
-                            staticClass: "btn-link text-danger",
-                            staticStyle: { cursor: "pointer" },
-                            on: {
-                              click: function($event) {
-                                _vm.deleteIncome(income.id)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              _vm._s(index + 1) +
-                                "\n                                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          {
-                            staticClass: "btn-link",
-                            staticStyle: { cursor: "pointer" },
-                            on: {
-                              click: function($event) {
-                                _vm.editIncome(income.id)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              _vm._s(income.title) +
-                                "\n                                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(income.amount) + " ریال")]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(
-                            "\n                                        " +
-                              _vm._s(income.created_diff) +
-                              "\n                                    "
-                          )
-                        ])
-                      ])
-                    }),
-                    0
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("h4", { staticClass: "text-center h4 mt-3 mb-3" }, [
-                  _vm._v("لیست آخرین هزینه ها")
-                ]),
-                _vm._v(" "),
-                _c("table", { staticClass: "table table-bordered" }, [
-                  _vm._m(5),
+                    "td",
+                    {
+                      staticClass: "btn-link",
+                      staticStyle: { cursor: "pointer" },
+                      on: {
+                        click: function($event) {
+                          _vm.editExpense(expense.id)
+                        }
+                      }
+                    },
+                    [
+                      _vm._v(
+                        _vm._s(expense.title) + "\n                        "
+                      )
+                    ]
+                  ),
                   _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.expenses, function(expense, index) {
-                      return _c("tr", { key: index }, [
-                        _c(
-                          "td",
-                          {
-                            staticClass: "btn-link text-danger",
-                            staticStyle: { cursor: "pointer" },
-                            on: {
-                              click: function($event) {
-                                _vm.deleteExpense(expense.id)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              _vm._s(index + 1) +
-                                "\n                                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          {
-                            staticClass: "btn-link",
-                            staticStyle: { cursor: "pointer" },
-                            on: {
-                              click: function($event) {
-                                _vm.editExpense(expense.id)
-                              }
-                            }
-                          },
-                          [
-                            _vm._v(
-                              _vm._s(expense.title) +
-                                "\n                                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(expense.amount) + " ریال")]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(expense.created_diff))])
-                      ])
-                    }),
-                    0
-                  )
+                  _c("td", [_vm._v(_vm._s(expense.amount) + " ریال")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(expense.created_diff))])
                 ])
-              ])
-            ])
+              }),
+              0
+            )
           ])
         ])
       ])

@@ -1,158 +1,151 @@
 ﻿<template>
-    <!--  Container -->
-    <div class="container">
-        <div class="row justify-content-center">
+    <!--  Dashboard Cart -->
+    <div class="card text-right">
+        <div class="card-header">داشبورد</div>
+
+        <!--  Dashboard Body -->
+        <div v-if="isLoading" class="isloading">
+            <h2 class="text-center h2 text-primary">درحال پردازش اطلاعات ...</h2>
+        </div>
+
+        <div class="card-body">
+            <!-- Warning -->
+            <div v-if="warning" class="alert alert-warning shadow-sm">
+                <strong> مواظب باش! </strong>
+                <small>پس انداز این ماه در خطره.</small>
+            </div>
+            <!-- Income And Expense Status -->
+
+            <table class="table table-bordered table-info text-center shadow">
+                <thead>
+                <tr>
+                    <th scope="col">میـزان درآمد یک ماه</th>
+                    <th scope="col">میـزان هزینه یک ماه</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ monthIncome }} ریال</td>
+                    <td>{{ monthExpense }} ریال</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!--  Dashboard Chart -->
             <div class="col-md-12">
-                <!--  Dashboard Cart -->
-                <div class="card text-right">
-                    <div class="card-header">داشبورد</div>
+                <canvas id="basicChart" width="1024" height="480"
+                        style="width: 1024px; height: 480px;"></canvas>
+            </div>
+            <!--  End Dashboard Chart -->
+            <hr>
 
-                    <!--  Dashboard Body -->
-                    <div v-if="isLoading" class="isloading">
-                        <h2 class="text-center h2 text-primary">درحال پردازش اطلاعات ...</h2>
-                    </div>
+            <!--  Dashboard Forms -->
+            <div class="row">
 
-                    <div class="card-body">
-                        <!-- Warning -->
-                        <div v-if="warning" class="alert alert-warning shadow-sm">
-                            <strong> مواظب باش! </strong>
-                            <small>پس انداز این ماه در خطره.</small>
+                <!--  New Income Form -->
+                <div class="col-md-6 mb-3">
+                    <div class="card shadow rounded">
+                        <div class="card-header ">
+                            <h3 class="text-center">ثبت درآمد جدید</h3>
                         </div>
-                        <!-- Income And Expense Status -->
-
-                        <table class="table table-bordered table-info text-center shadow">
-                            <thead>
-                            <tr>
-                                <th scope="col">میـزان درآمد یک ماه</th>
-                                <th scope="col">میـزان هزینه یک ماه</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{{ monthIncome }} ریال</td>
-                                <td>{{ monthExpense }} ریال</td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-                        <!--  Dashboard Chart -->
-                        <div class="col-md-12">
-                            <canvas id="basicChart" width="1024" height="480"
-                                    style="width: 1024px; height: 480px;"></canvas>
-                        </div>
-                        <!--  End Dashboard Chart -->
-                        <hr>
-
-                        <!--  Dashboard Forms -->
-                        <div class="row">
-
-                            <!--  New Income Form -->
-                            <div class="col-md-6 mb-3">
-                                <div class="card shadow rounded">
-                                    <div class="card-header ">
-                                        <h3 class="text-center">ثبت درآمد جدید</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <form @submit.prevent>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" required
-                                                       placeholder="عنوان درآمد" v-model="inctitle">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="number" class="form-control" required
-                                                       placeholder="مقدار درآمد به ریال"
-                                                       v-model="incamount">
-                                            </div>
-                                            <button type="submit" class="btn btn-success btn-block mb-2"
-                                                    @click="saveIncome">ذخیره
-                                            </button>
-                                            <button type="reset" class="btn btn-light btn-block">خالی کردن فرم</button>
-                                        </form>
-                                    </div>
+                        <div class="card-body">
+                            <form @submit.prevent>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" required
+                                           placeholder="عنوان درآمد" v-model="inctitle">
                                 </div>
-                            </div>
-                            <!--  End Income Form -->
-
-                            <!--  New Expense Form -->
-                            <div class="col-md-6">
-                                <div class="card shadow rounded">
-                                    <div class="card-header">
-                                        <h3 class="text-center">ثبت هزینه جدید</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <form @submit.prevent>
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" required
-                                                       placeholder="عنوان هزینه" v-model="extitle">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="number" class="form-control" required
-                                                       placeholder="مقدار هزینه به ریال"
-                                                       v-model="examount">
-                                            </div>
-                                            <button @click="saveExpense" type="submit"
-                                                    class="btn btn-primary btn-block mb-2">ذخیره
-                                            </button>
-                                            <button type="reset" class="btn btn-light btn-block">خالی کردن فرم</button>
-                                        </form>
-                                    </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" required
+                                           placeholder="مقدار درآمد به ریال"
+                                           v-model="incamount">
                                 </div>
-                            </div>
-                            <!--  End Expense Form -->
-                            <div class="col-md-6">
-                                <h4 class="text-center h4 mt-3 mb-3">لیست آخرین درآمد ها</h4>
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th scope="row">#</th>
-                                        <th scope="col">عنوان درآمد</th>
-                                        <th scope="col">مبلغ</th>
-                                        <th scope="col">تاریخ ثبت</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr v-for="(income, index) in incomes" :key="index">
-                                        <td class="btn-link text-danger" @click="deleteIncome(income.id)"
-                                            style="cursor: pointer">{{ index+1 }}
-                                        </td>
-                                        <td class="btn-link" @click="editIncome(income.id)" style="cursor: pointer">{{
-                                            income.title }}
-                                        </td>
-                                        <td>{{ income.amount }} ریال</td>
-                                        <td>
-                                            {{ income.created_diff }}
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-md-6">
-                                <h4 class="text-center h4 mt-3 mb-3">لیست آخرین هزینه ها</h4>
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th scope="row">#</th>
-                                        <th scope="col">عنوان هزینه</th>
-                                        <th scope="col">مبلغ</th>
-                                        <th scope="col">تاریخ ثبت</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr v-for="(expense, index) in expenses" :key="index">
-                                        <td class="btn-link text-danger" @click="deleteExpense(expense.id)"
-                                            style="cursor: pointer">{{ index+1 }}
-                                        </td>
-                                        <td class="btn-link" @click="editExpense(expense.id)" style="cursor: pointer">{{
-                                            expense.title }}
-                                        </td>
-                                        <td>{{ expense.amount }} ریال</td>
-                                        <td>{{ expense.created_diff }}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                <button type="submit" class="btn btn-success btn-block mb-2"
+                                        @click="saveIncome">ذخیره
+                                </button>
+                                <button type="reset" class="btn btn-light btn-block">خالی کردن فرم</button>
+                            </form>
                         </div>
                     </div>
+                </div>
+                <!--  End Income Form -->
+
+                <!--  New Expense Form -->
+                <div class="col-md-6">
+                    <div class="card shadow rounded">
+                        <div class="card-header">
+                            <h3 class="text-center">ثبت هزینه جدید</h3>
+                        </div>
+                        <div class="card-body">
+                            <form @submit.prevent>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" required
+                                           placeholder="عنوان هزینه" v-model="extitle">
+                                </div>
+                                <div class="form-group">
+                                    <input type="number" class="form-control" required
+                                           placeholder="مقدار هزینه به ریال"
+                                           v-model="examount">
+                                </div>
+                                <button @click="saveExpense" type="submit"
+                                        class="btn btn-primary btn-block mb-2">ذخیره
+                                </button>
+                                <button type="reset" class="btn btn-light btn-block">خالی کردن فرم</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--  End Expense Form -->
+                <div class="col-md-6">
+                    <h4 class="text-center h4 mt-3 mb-3">لیست آخرین درآمد ها</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="row">#</th>
+                            <th scope="col">عنوان درآمد</th>
+                            <th scope="col">مبلغ</th>
+                            <th scope="col">تاریخ ثبت</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(income, index) in incomes" :key="index">
+                            <td class="btn-link text-danger" @click="deleteIncome(income.id)"
+                                style="cursor: pointer">{{ index+1 }}
+                            </td>
+                            <td class="btn-link" @click="editIncome(income.id)" style="cursor: pointer">{{
+                                income.title }}
+                            </td>
+                            <td>{{ income.amount }} ریال</td>
+                            <td>
+                                {{ income.created_diff }}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="text-center h4 mt-3 mb-3">لیست آخرین هزینه ها</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="row">#</th>
+                            <th scope="col">عنوان هزینه</th>
+                            <th scope="col">مبلغ</th>
+                            <th scope="col">تاریخ ثبت</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(expense, index) in expenses" :key="index">
+                            <td class="btn-link text-danger" @click="deleteExpense(expense.id)"
+                                style="cursor: pointer">{{ index+1 }}
+                            </td>
+                            <td class="btn-link" @click="editExpense(expense.id)" style="cursor: pointer">{{
+                                expense.title }}
+                            </td>
+                            <td>{{ expense.amount }} ریال</td>
+                            <td>{{ expense.created_diff }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
