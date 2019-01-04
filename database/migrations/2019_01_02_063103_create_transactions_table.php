@@ -21,6 +21,8 @@ class CreateTransactionsTable extends Migration
             $table->string('cardNumber', 16);
             $table->integer('amount');
             $table->boolean('status');
+            $table->smallInteger('type');
+            $table->timestamp('end_date')->nullable();
             $table->unique(['factorNumber','transId']);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

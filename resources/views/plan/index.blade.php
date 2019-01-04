@@ -241,25 +241,34 @@ Inspired by the dribble shot http://dribbble.com/shots/1285240-Freebie-Flat-Pric
             <h1 class="heading">
                 خرید و فعالسازی حساب کاربری
             </h1>
+            <center>
+                <div class="col-md-3">
+                    @if (\Session::has('fail'))
+                        <div class="alert alert-danger text-center">
+                            <p class="text-center">{{ \Session::get('fail') }}</p>
+                        </div><br/>
+                    @endif
+                </div>
+            </center>
             <!-- PERSONAL -->
             <div class="block personal fr">
-                <h2 class="title">حمایت کم</h2>
+                <h2 class="title">1 ماه</h2>
                 <!-- CONTENT -->
                 <div class="content">
                     <p class="price">
                         <sup>ريال</sup>
                         <span>۲۰۰۰۰</span>
-                        <sub>برای همیشه</sub>
+                        <sub>برای یک ماه</sub>
                     </p>
                     <p class="hint">خوش حال کردن توسعه دهنده</p>
                 </div>
                 <!-- /CONTENT -->
                 <!-- FEATURES -->
                 <ul class="features">
-                    <li><span class="fontawesome-cog"></span>فعالسازی همه امکانات </li>
-                    <li><span class="fontawesome-star"></span>فعالسازی همه امکانات </li>
-                    <li><span class="fontawesome-dashboard"></span>فعالسازی همه امکانات </li>
-                    <li><span class="fontawesome-cloud"></span>فعالسازی همه امکانات </li>
+                    <li><span class="fontawesome-cog"></span>فعالسازی همه امکانات</li>
+                    <li><span class="fontawesome-star"></span>فعالسازی همه امکانات</li>
+                    <li><span class="fontawesome-dashboard"></span>فعالسازی همه امکانات</li>
+                    <li><span class="fontawesome-cloud"></span>فعالسازی همه امکانات</li>
                 </ul>
                 <!-- /FEATURES -->
                 <!-- PT-FOOTER -->
@@ -275,23 +284,23 @@ Inspired by the dribble shot http://dribbble.com/shots/1285240-Freebie-Flat-Pric
             <!-- /PERSONAL -->
             <!-- PROFESSIONAL -->
             <div class="block professional fr">
-                <h2 class="title">حمایت متوسط</h2>
+                <h2 class="title">1 سال</h2>
                 <!-- CONTENT -->
                 <div class="content">
                     <p class="price">
                         <sup>ریال</sup>
-                        <span>۱۰۰۰۰۰</span>
-                        <sub>برای همیشه</sub>
+                        <span>۲۲۰۰۰۰</span>
+                        <sub>برای یک سال</sub>
                     </p>
                     <p class="hint">دلگرم کردن توسعه دهنده</p>
                 </div>
                 <!-- /CONTENT -->
                 <!-- FEATURES -->
                 <ul class="features">
-                    <li><span class="fontawesome-cog"></span>فعالسازی همه امکانات </li>
-                    <li><span class="fontawesome-star"></span>فعالسازی همه امکانات </li>
-                    <li><span class="fontawesome-dashboard"></span>فعالسازی همه امکانات </li>
-                    <li><span class="fontawesome-cloud"></span>فعالسازی همه امکانات </li>
+                    <li><span class="fontawesome-cog"></span>فعالسازی همه امکانات</li>
+                    <li><span class="fontawesome-star"></span>فعالسازی همه امکانات</li>
+                    <li><span class="fontawesome-dashboard"></span>فعالسازی همه امکانات</li>
+                    <li><span class="fontawesome-cloud"></span>فعالسازی همه امکانات</li>
                 </ul>
                 <!-- /FEATURES -->
                 <!-- PT-FOOTER -->
@@ -307,12 +316,12 @@ Inspired by the dribble shot http://dribbble.com/shots/1285240-Freebie-Flat-Pric
             <!-- /PROFESSIONAL -->
             <!-- BUSINESS -->
             <div class="block business fr">
-                <h2 class="title">انرژی هسته ای</h2>
+                <h2 class="title">همیشگی</h2>
                 <!-- CONTENT -->
                 <div class="content">
                     <p class="price">
                         <sup>ریال</sup>
-                        <span>۲۰۰۰۰۰</span>
+                        <span>۶۰۰۰۰۰</span>
                         <sub>برای همیشه</sub>
                     </p>
                     <p class="hint">دادن انرژی هسته ای به توسعه دهنده</p>
@@ -321,10 +330,10 @@ Inspired by the dribble shot http://dribbble.com/shots/1285240-Freebie-Flat-Pric
 
                 <!-- FEATURES -->
                 <ul class="features">
-                    <li><span class="fontawesome-cog"></span>فعالسازی همه امکانات </li>
-                    <li><span class="fontawesome-star"></span>فعالسازی همه امکانات </li>
-                    <li><span class="fontawesome-dashboard"></span>فعالسازی همه امکانات </li>
-                    <li><span class="fontawesome-cloud"></span>فعالسازی همه امکانات </li>
+                    <li><span class="fontawesome-cog"></span>فعالسازی همه امکانات</li>
+                    <li><span class="fontawesome-star"></span>فعالسازی همه امکانات</li>
+                    <li><span class="fontawesome-dashboard"></span>فعالسازی همه امکانات</li>
+                    <li><span class="fontawesome-cloud"></span>فعالسازی همه امکانات</li>
                 </ul>
                 <!-- /FEATURES -->
 

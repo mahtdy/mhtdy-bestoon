@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\CheckUserActivation;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = User::where('id', '=', auth()->id())->first();
+        $userExpiry = $user->hasExpiry();
+        $userExpiryType = $userExpiry->type;
+        return view('home', compact('userExpiry','userExpiryType'));
     }
 
     public function newIncome(Request $request)
@@ -172,39 +176,86 @@ class HomeController extends Controller
      */
     public function buyPlan(Request $request)
     {
-        $this->validate($request, [
-            'type' => 'required'
-        ]);
-        $amount = null;
-        $price1 = 20000;
-        $price2 = 100000;
-        $price3 = 200000;
-        if ($request->type == 1) {
-            $amount = $price1;
-        } elseif ($request->type == 2) {
-            $amount = $price2;
-        } elseif ($request->type == 3) {
-            $amount = $price3;
-        } else {
-            return back();
-        }
-        $api = 'test';
-        $factorNumber = str_random(15);
-        $description = "فعالسازی حساب کاربری";
-        $redirect = 'http://localhost:8000/verifyPay';
-        $result = $this->sendPay($api, $amount, $redirect, null, $factorNumber, $description);
-        $result = json_decode($result);
-        if ($result->status) {
-            $go = "https://pay.ir/pg/$result->token";
-            return redirect($go);
-        } else {
-            return $result->errorMessage;
-        }
+        $trans = Transaction::where('user_id', $request->user()->id)->first();
+        if ($trans !== null) {
+            $end_date = $trans->end_date;
+            $now = Carbon::now()->format('Y-m-d h:m:s');
+            if ($end_date === null && $end_date > $now) {
 
+                $this->validate($request, [
+                    'type' => 'required'
+                ]);
+                $amount = null;
+                $description = null;
+                $price1 = 20000;
+                $price2 = 220000;
+                $price3 = 600000;
+                if ($request->type == 1) {
+                    $amount = $price1;
+                    $description = 1;
+                } elseif ($request->type == 2) {
+                    $amount = $price2;
+                    $description = 2;
+                } elseif ($request->type == 3) {
+                    $amount = $price3;
+                    $description = 3;
+                } else {
+                    return back();
+                }
+                $api = 'test';
+                $factorNumber = str_random(15);
+                $redirect = 'http://localhost:8000/verifyPay';
+                $result = $this->sendPay($api, $amount, $redirect, null, $factorNumber, $description);
+                Session::put('plantype', $request->type);
+                $result = json_decode($result);
+                if ($result->status) {
+                    $go = "https://pay.ir/pg/$result->token";
+                    return redirect($go);
+                } else {
+                    return $result->errorMessage;
+                }
+            } else {
+                return back()->with('fail', 'حساب کاربری شما داری اعتبار می باشد!');
+            }
+        } else {
+            $this->validate($request, [
+                'type' => 'required'
+            ]);
+            $amount = null;
+            $description = null;
+            $price1 = 20000;
+            $price2 = 220000;
+            $price3 = 600000;
+            if ($request->type == 1) {
+                $amount = $price1;
+                $description = 1;
+            } elseif ($request->type == 2) {
+                $amount = $price2;
+                $description = 2;
+            } elseif ($request->type == 3) {
+                $amount = $price3;
+                $description = 3;
+            } else {
+                return back();
+            }
+            $api = 'test';
+            $factorNumber = str_random(15);
+            $redirect = 'http://localhost:8000/verifyPay';
+            $result = $this->sendPay($api, $amount, $redirect, null, $factorNumber, $description);
+            Session::put('plantype', $request->type);
+            $result = json_decode($result);
+            if ($result->status) {
+                $go = "https://pay.ir/pg/$result->token";
+                return redirect($go);
+            } else {
+                return $result->errorMessage;
+            }
+        }
     }
 
     public function verifyPay(Request $request)
     {
+
         $api = 'test';
         $token = $request->token;
         $result = json_decode($this->verify($api, $token));
@@ -216,6 +267,14 @@ class HomeController extends Controller
             $trans->cardNumber = $result->cardNumber;
             $trans->amount = $result->amount;
             $trans->status = $result->status;
+            $trans->type = intval(Session::get('plantype'));
+            if ($result->amount == 20000) {
+                $trans->end_date = Carbon::now()->addMonth(1);
+            } elseif ($result->amount == 220000) {
+                $trans->end_date = Carbon::now()->addYear(1);
+            } elseif ($result->amount == 600000) {
+                $trans->end_date = null;
+            }
             $trans->save();
             if ($result->status == 1) {
                 $res = $result;
