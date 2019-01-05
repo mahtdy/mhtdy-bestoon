@@ -1,0 +1,168 @@
+html,
+body {
+    direction: rtl !important;
+    text-align: right;
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #F4F4F4 !important;
+    background-size: cover;
+}
+
+#home-body {
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/home-page/Background-Side-Art.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+}
+
+.home-top-bar {
+    margin: 10em 0;
+}
+
+.home-top-bar h1 {
+    color: #5824EB;
+    font-size: 48px;
+}
+
+.home-top-bar p {
+    color: #3E3E3E;
+    font-size: 18px;
+    margin: 1em 0;
+}
+
+.home-top-bar a.cta {
+    margin: 1em 0;
+    color: #F4F4F4;
+    font-size: 16px;
+    display: inline-block;
+    width: 350px;
+    height: 50px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ce00ff+0,5f03ff+100 */
+    background: #ce00ff;
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #ce00ff 0%, #5f03ff 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #ce00ff 0%, #5f03ff 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #ce00ff 0%, #5f03ff 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ce00ff', endColorstr='#5f03ff', GradientType=1);
+    /* IE6-9 fallback on horizontal gradient */
+    border-radius: 50em;
+    padding: .7em 0;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    border: 1px solid transparent;
+}
+
+.home-top-bar a.cta:hover {
+    background: none;
+    color: #5824EB;
+    border: 1px solid #5824EB;
+}
+
+/** --- Plans --- */
+.plans {
+    text-align: center;
+    max-width: 100%;
+}
+
+.plans h3 {
+    margin: 2em auto 1em auto;
+    font-size: 24px;
+    color: #5824EB;
+    font-weight: 500;
+}
+
+.plans h2 {
+    margin: 1em auto;
+    font-size: 28px;
+    color: #3889C7;
+    font-weight: 500;
+}
+
+.plans span {
+    margin: 0 auto;
+    color: #3E3E3E;
+    font-size: 16px;
+    width: 100%;
+    font-weight: 100;
+    display: block;
+}
+
+.plans img {
+    margin: 0 auto;
+}
+
+.plans a.btn-buy-plan {
+    margin: 2em auto;
+    display: block;
+    width: 70%;
+    height: 50px;
+    color: #585858;
+    font-size: 14px;
+    padding: 1em 0;
+    border-radius: 50em;
+    background: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .3);
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+}
+
+.plans a.btn-buy-plan:hover {
+    box-shadow: 0 1px 20px rgba(0, 0, 0, .5);
+}
+
+.plans .plan-1 {
+    background-image: url(../images/home-page/Rectangle-1.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 302px;
+    height: 405px;
+    display: block;
+}
+
+.plans .plan-2 {
+    background-image: url(../images/home-page/Rectangle-2.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 302px;
+    height: 405px;
+    display: block;
+}
+
+.plans .plan-3 {
+    background-image: url(../images/home-page/Rectangle-3.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 302px;
+    height: 405px;
+    display: block;
+}
+
+/** --- Responsive  --- */
+@media only screen and (max-width: 1000px) {
+    .plans h3 {
+        margin: 2.8em auto .5em auto;
+    }
+
+    .plans h2 {
+        margin: .5em auto;
+    }
+
+    .plans a.btn-buy-plan {
+        margin: 1em auto;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    #home-body {
+        background-image: url(../images/home-page/Background-Side-Art-res.png);
+    }
+}
