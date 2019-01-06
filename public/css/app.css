@@ -551,6 +551,17 @@ body {
 .table-striped tr td:last-of-type {
     border-radius: 5px 0 0 5px;
 }
+.admin .box {
+    margin: 1em;
+    padding: 2em;
+    box-shadow: 0 0 1.4em rgba(0, 0, 0, .3);
+    border-radius: 3px;
+    color: white;
+    transition: all .3s ease-in-out;
+}
+.admin .box:hover {
+    box-shadow: 0 0 3em rgba(0, 0, 0, .6);
+}
 @charset "UTF-8";
 
 /*!

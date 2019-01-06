@@ -6,7 +6,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header text-right">
-                        <h4>ویرایش کاربر</h4>
+                        <h4 class="float-right">ویرایش کاربر</h4>
+                        <span class="float-left"><a href="/admin" class="btn btn-link">بازگشت</a></span>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('editUser') }}" method="post" class="text-right">

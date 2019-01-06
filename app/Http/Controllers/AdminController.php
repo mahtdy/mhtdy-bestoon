@@ -17,9 +17,10 @@ class AdminController extends Controller
 
     public function index()
     {
-        $users = User::latest()->paginate(10);
-        $transs = Transaction::latest()->paginate(10);
-        return view('Admin.index',compact('users','transs'));
+        $users = User::latest()->paginate(1,['*'], 'user_page');
+        $transs = Transaction::latest()->paginate(1,['*'], 'trans_page');
+        $totalIncome = $transs->sum('amount');
+        return view('Admin.index',compact('users','transs','totalIncome'));
     }
 
     public function editUserPage($id)
