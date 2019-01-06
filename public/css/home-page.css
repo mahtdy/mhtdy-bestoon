@@ -18,6 +18,7 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     display: block;
+    padding: 1.4em 0;
 }
 
 .home-top-bar {
@@ -100,7 +101,7 @@ body {
     margin: 0 auto;
 }
 
-.plans a.btn-buy-plan {
+.plans .btn-buy-plan {
     margin: 2em auto;
     display: block;
     width: 70%;
@@ -113,9 +114,11 @@ body {
     box-shadow: 0 3px 6px rgba(0, 0, 0, .3);
     text-decoration: none;
     transition: all .3s ease-in-out;
+    border: none;
+    cursor: pointer;
 }
 
-.plans a.btn-buy-plan:hover {
+.plans .btn-buy-plan:hover {
     box-shadow: 0 1px 20px rgba(0, 0, 0, .5);
 }
 
@@ -156,7 +159,7 @@ body {
         margin: .5em auto;
     }
 
-    .plans a.btn-buy-plan {
+    .plans .btn-buy-plan {
         margin: 1em auto;
     }
 }
