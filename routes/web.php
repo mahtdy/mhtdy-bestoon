@@ -36,3 +36,8 @@ Route::any('/verifyPay', 'HomeController@verifyPay')->name('verifyPay');
 
 Route::get('/subscribe', 'SubscribeController@index');
 Route::post('/subscribe', 'SubscribeController@store')->name('subscribe');
+
+Route::get('/admin', 'AdminController@index');
+Route::get('/admin/user/{id}/edit', 'AdminController@editUserPage');
+Route::put('/admin/user/edit', 'AdminController@editUser')->name('editUser');
+Route::delete('/admin/user/delete', 'AdminController@deleteUser')->name('deleteUser');
